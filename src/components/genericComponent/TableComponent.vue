@@ -1,14 +1,7 @@
 <template>
+  <Input v-model="inputValue"/> {{ inputValue }}
   <table>
-    <thead>
-      <tr>
-        <th v-for="(field, fieldIndex) in fields" :key="fieldIndex">
-          <slot :name="`head-${field.key}`" :field="field" :index="fieldIndex">
-            {{ field.label }}
-          </slot>
-        </th>
-      </tr>
-    </thead>
+    <THead :fields="fields"/>
     <TBody :items="items" :fields="fields">
       <template v-for="(_, name) in ($slots as {})" #[name]="slotData">
         <slot :name="name" v-bind="slotData || {}" />
@@ -18,8 +11,10 @@
 </template>
 
 <script setup lang="ts" generic="Row extends ItemsViewModel<Row>">
-import TBody from './TableGroup/TBody.vue'
+import { TBody, THead } from '@/components/genericComponent/TableGroup'
 import type { Fields, ItemsViewModel } from './interface'
+import Input from '../defineModel/Input.vue'
+import { ref } from 'vue'
 
 defineProps<{
   items: Row[]
@@ -38,6 +33,8 @@ const emit = defineEmits<{
   foo: [id: number]
   bar: [name: string, ...rest: any[]]
 }>()
+
+const inputValue = ref('')
 </script>
 
 <style scoped>
