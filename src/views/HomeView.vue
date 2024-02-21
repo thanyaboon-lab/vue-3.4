@@ -19,13 +19,15 @@ export interface Items {
   name: string
   address: string
   email: string
+  action?: boolean
 }
 
 const items = ref<Items[]>([
   {
     name: 'name',
     address: 'address',
-    email: 'email'
+    email: 'email',
+    action: true
   },
   {
     name: 'name2',

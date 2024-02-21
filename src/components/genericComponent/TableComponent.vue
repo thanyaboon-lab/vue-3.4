@@ -10,7 +10,7 @@
   </table>
 </template>
 
-<script setup lang="ts" generic="Row extends ItemsViewModel<Row>">
+<script setup lang="ts" generic="Row extends ItemsViewModel<Row>, Column extends Fields">
 import { TBody, THead } from '@/components/genericComponent/TableGroup'
 import type { Fields, ItemsViewModel } from './interface'
 import Input from '../defineModel/Input.vue'
@@ -24,8 +24,10 @@ defineProps<{
 
 // Typed Slots with defineSlots
 defineSlots<
-  { [K in keyof Row as `cell-${K & string}`]: (props: { item: Row; index: number }) => Row[] } &
-  { [K in keyof Row as `head-${K & string}`]: (props: { field: Fields; index: number }) => Fields[] }
+{ [K in keyof Row as `cell-${K & string}`]: (props: { item: Row; index: number }) => Row[] } &
+  { [K in keyof Row as `head-${K & string}`]: (props: { field: Fields; index: number }) => Fields[] } &
+  { [K in keyof Column as `cell-${Column[K] & string}`]: (props: { item: Row; index: number }) => Row[] } &
+  { [K in keyof Column as `head-${Column[K] & string}`]: (props: { field: Fields; index: number }) => Fields[] }
 >()
 
 // More Ergonomic defineEmits
