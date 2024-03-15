@@ -1,13 +1,15 @@
 <template>
-  <h1>GenericComponent</h1>
-  <TableComponent :fields="fields" :selected="selected" :items="items" >
-    <template #head-address="{field, index}">
-      {{ field }} {{ index }}
-    </template>
-    <template #cell-address="{item , index}">
-      {{ item }} {{ index }}
-    </template>
-  </TableComponent>
+  <div class="greetings">
+    <h1>GenericComponent</h1>
+    <TableComponent :fields="fields" :selected="selected" :items="items" >
+      <template #head-address="{field, index}">
+        {{ field }} {{ index }}
+      </template>
+      <template #cell-address="{item , index}">
+        {{ item }} {{ index }}
+      </template>
+    </TableComponent>
+  </div>
 </template>
 
 <script setup lang="ts">
