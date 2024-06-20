@@ -1,17 +1,3 @@
-<script lang="ts" setup generic="Row extends ItemsViewModel<Row>">
-import type { Fields, ItemsViewModel } from '../interface'
-
-defineProps<{
-  items: Row[]
-  fields: Fields[]
-}>()
-
-defineSlots<{
-  [K in keyof Row as `cell-${K & string}`]: (props: { item: Row; index: number }) => Row[]
-}>()
-
-</script>
-
 <template>
   <tbody>
     <tr v-for="(item, itemIndex) in items" :key="itemIndex">
@@ -23,3 +9,16 @@ defineSlots<{
     </tr>
   </tbody>
 </template>
+
+<script lang="ts" setup generic="Row extends ItemsViewModel<Row>">
+import type { Fields, ItemsViewModel } from '../interface'
+
+defineProps<{
+  items: Row[]
+  fields: Fields[]
+}>()
+
+defineSlots<{
+  [K in keyof Row as `cell-${K & string}`]: (props: { item: Row; index: number }) => Row[]
+}>()
+</script>

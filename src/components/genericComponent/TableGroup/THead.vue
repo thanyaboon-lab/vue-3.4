@@ -1,4 +1,3 @@
-
 <template>
   <thead>
     <tr>
@@ -11,13 +10,12 @@
   </thead>
 </template>
 
-<script setup lang="ts" >
-import { type Fields } from '../interface'
+<script setup lang="ts">
+import type { Fields } from '../interface'
 
 defineProps<{
   fields: Fields[]
 }>()
-
 </script>
 
 <style scoped>
